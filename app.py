@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import numpy as np
+
 
 
 df_vehicles= pd.read_csv('vehicles_us.csv')
@@ -25,7 +27,7 @@ df_vehicles = df_vehicles.dropna(subset=['odometer'])
 df_vehicles['is_4wd'] = df_vehicles['is_4wd'].fillna(0)
 
 #changed columns values of float to int
-df_vehicles[['model_year','cylinders','odometer','is_4wd']] = df_vehicles[['model_year','cylinders','odometer','is_4wd']].astype(int)
+df_vehicles[['model_year','cylinders','odometer','is_4wd','price']] = df_vehicles[['model_year','cylinders','odometer','is_4wd','price']].astype(int)
 
 
 #filled missing paint color with the mode white
