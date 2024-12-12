@@ -8,7 +8,6 @@ import numpy as np
 df_vehicles= pd.read_csv('vehicles_us.csv')
 
 
-
 st.header('Used Car Data')
 
 st.write('Use the Data to learn about used cars and their value')
@@ -20,21 +19,27 @@ df_vehicles['date_posted'] = pd.to_datetime(df_vehicles['date_posted'])
 df_vehicles[['model_year','cylinders','odometer']] = df_vehicles.groupby('model')[['model_year','cylinders','odometer']].transform(lambda x: x.fillna(x.median()))
 
 #Some of the missing values did not get removed from the above code.
-df_vehicles = df_vehicles.dropna(subset=['odometer'])
+#df_vehicles = df_vehicles.dropna(subset=['odometer'])
 
+#adding median to the missing 41 values.
+df_vehicles['odometer'] = df_vehicles['odometer'].fillna(df_vehicles['odometer'].median())
 
 #I filled in missing values with zeros. 
 df_vehicles['is_4wd'] = df_vehicles['is_4wd'].fillna(0)
 
+
+
 #changed columns values of float to int
 df_vehicles[['model_year','cylinders','odometer','is_4wd']] = df_vehicles[['model_year','cylinders','odometer','is_4wd']].astype(int)
 
+#convert is_4wd to boolean
+df_vehicles['is_4wd'] = df_vehicles['is_4wd'].astype(bool)
 
 df_vehicles['price'] = pd.to_numeric(df_vehicles['price'], errors = 'coerce')
 
 #filled missing paint color with the mode white
-mode_paint_color = df_vehicles['paint_color'].mode()[0]
-df_vehicles['paint_color'] = df_vehicles['paint_color'].fillna('white')
+#mode_paint_color = df_vehicles['paint_color'].mode()[0]
+df_vehicles['paint_color'] = df_vehicles['paint_color'].fillna('unknown')
 
 #make a new column with brand namestream
 df_vehicles['brand'] = df_vehicles['model'].str.split().str.get(0)
