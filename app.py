@@ -27,8 +27,10 @@ df_vehicles = df_vehicles.dropna(subset=['odometer'])
 df_vehicles['is_4wd'] = df_vehicles['is_4wd'].fillna(0)
 
 #changed columns values of float to int
-df_vehicles[['model_year','cylinders','odometer','is_4wd','price']] = df_vehicles[['model_year','cylinders','odometer','is_4wd','price']].astype(int)
+df_vehicles[['model_year','cylinders','odometer','is_4wd']] = df_vehicles[['model_year','cylinders','odometer','is_4wd']].astype(int)
 
+
+df_vehicles['price'] = pd.to_numeric(df_vehicles['price'], errors = 'coerce')
 
 #filled missing paint color with the mode white
 mode_paint_color = df_vehicles['paint_color'].mode()[0]
