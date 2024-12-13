@@ -37,11 +37,10 @@ df_vehicles['is_4wd'] = df_vehicles['is_4wd'].astype(bool)
 
 df_vehicles['price'] = pd.to_numeric(df_vehicles['price'], errors = 'coerce')
 
-#filled missing paint color with the mode white
-#mode_paint_color = df_vehicles['paint_color'].mode()[0]
+#filled missing paint color with unknown
 df_vehicles['paint_color'] = df_vehicles['paint_color'].fillna('unknown')
 
-#make a new column with brand namestream
+#make a new column with brand name
 df_vehicles['brand'] = df_vehicles['model'].str.split().str.get(0)
 
 brands = df_vehicles['brand'].unique()
