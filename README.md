@@ -10,10 +10,12 @@ These characteristics include model year, odometer, cylinder, paint color and ca
 Process: The database is firstly processed by filling in missing values in the model_year, cylinder, and odometer columns.
 I did that by grouping by model year and filling in with their respective median. The model Mercedes sprinter van had no odometer 
 therefore had no median to fill in with. I took care of those missing values independently. Moreover, the paint color had some
-missing values and those were filled in with unknown. I lastly created a  Boolean column out of is 4_wd. 
+missing values and those were filled in with unknown. Lastly, I created a  Boolean column out of is 4_wd. 
 
 Visuals:The first visual is a  distribution of Price depending on Brand, Cylinders, Paint color and Type. The x axis is price
 with y axis being frequency or count. The color is choosen from the dropdown menu. The second visual is a scatterplot with
 Mean price by brand and Model Year. The user can pick from different color representing brad while the x axis depicts year and y axis 
 is frequency.
 
+App Launch: In visual studio code have a repository with notebook, .gitignore, README.md, app.py, config.toml, requirements.txt , vehicles_us.csv.
+Using VsCode terminal I can write streamlit run app.py where the app will pop open in with a local host adress.
